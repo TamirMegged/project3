@@ -1,0 +1,34 @@
+CREATE database flyAway; 
+
+USE flyAway; 
+
+CREATE table users(
+id int auto_increment,
+username varchar(255) not null,
+first_name varchar(255) not null,
+last_name varchar(255) not null,
+password text not null,
+role varchar(255) default "user",
+primary key (id)
+);
+
+CREATE table vacations(
+id int auto_increment,
+destination varchar(255) not null,
+description text not null,
+image varchar(255) not null,
+start_date varchar(255) not null,
+end_date varchar(255) not null,
+price int not null,
+followers int default 0,
+primary key (id)
+);
+
+CREATE table likes(
+id int auto_increment,
+userID int not null,
+vacationID int not null,
+FOREIGN KEY (userID) REFERENCES users(id),
+FOREIGN KEY (vacationID) REFERENCES vacations(id),
+PRIMARY KEY (id)
+);
